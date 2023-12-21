@@ -6,7 +6,7 @@ import fetcher from "./../../utils/swrFetcher";
 
 export default function Page() {
   const { error, data, isLoading } = useSWR(
-    "https://cdn.contentful.com/spaces/y4lqlhcyc2lr/environments/master/entries?access_token=i8EKrSf2agSubIgFn6kiOvv3kFjgZUG_UIZviR3T_CQ&content_type=project",
+    "http://localhost:3456/api/posts",
     fetcher
   );
 
@@ -34,10 +34,11 @@ export default function Page() {
         <Container w={"container.xl"}>
           <Heading as={"h1"} marginBottom={"20px"}>
             {" "}
-            Project{" "}
+            Blog{" "}
           </Heading>
           <hr style={{ marginBottom: "20px" }}></hr>
-          {data?.items.map((item, index) => {
+
+          {data.data.map((item, index) => {
             return (
               <Box
                 bgColor={"orange.500"}
@@ -46,7 +47,7 @@ export default function Page() {
                 lineHeight={"30px"}
                 marginBottom={"10px"}
               >
-                <a href={item.fields.projectUrl}>{item.fields.projectTitle}</a>
+                <a href={`/blog/${item.id}`}>{item.title}</a>
               </Box>
             );
           })}

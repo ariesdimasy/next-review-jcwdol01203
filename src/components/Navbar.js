@@ -5,12 +5,16 @@ export default function Navbar() {
   return (
     <Box bgColor={"blue.500"} h={"50px"} lineHeight={"50px"} color={"white"}>
       <Center>
-        <Container>
+        <Container w={"lg"}>
           <Flex>
             <div w={"40%"} style={{ marginRight: 50 }}>
               <Link href={"/"}>Yudhistira.id</Link>
             </div>
             <nav w={"60%"}>
+              <Link href={"/blog"} className="mr-[20px]">
+                {" "}
+                Blog{" "}
+              </Link>
               <Link href={"/project"} className="mr-[20px]">
                 {" "}
                 Project{" "}

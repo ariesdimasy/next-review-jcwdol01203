@@ -1,12 +1,14 @@
 "use client";
-
+import { useParams } from "next/navigation";
 import { Box, Center, Container, Heading } from "@chakra-ui/react";
 import useSWR from "swr";
-import fetcher from "./../../utils/swrFetcher";
+import fetcher from "./../../../utils/swrFetcher";
 
 export default function Page() {
+  const params = useParams();
+
   const { error, data, isLoading } = useSWR(
-    "https://cdn.contentful.com/spaces/y4lqlhcyc2lr/environments/master/entries?access_token=i8EKrSf2agSubIgFn6kiOvv3kFjgZUG_UIZviR3T_CQ&content_type=project",
+    `http://localhost:3456/api/posts/${params.id}`,
     fetcher
   );
 
@@ -33,23 +35,10 @@ export default function Page() {
       <Center>
         <Container w={"container.xl"}>
           <Heading as={"h1"} marginBottom={"20px"}>
-            {" "}
-            Project{" "}
+            {data.data.title}
           </Heading>
           <hr style={{ marginBottom: "20px" }}></hr>
-          {data?.items.map((item, index) => {
-            return (
-              <Box
-                bgColor={"orange.500"}
-                color={"white"}
-                h={"30px"}
-                lineHeight={"30px"}
-                marginBottom={"10px"}
-              >
-                <a href={item.fields.projectUrl}>{item.fields.projectTitle}</a>
-              </Box>
-            );
-          })}
+          <p>{data.data.body}</p>
         </Container>
       </Center>
     </Box>
