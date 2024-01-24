@@ -45,6 +45,7 @@ export default function Page() {
                 h={"30px"}
                 lineHeight={"30px"}
                 marginBottom={"10px"}
+                key={index}
               >
                 <a href={item.fields.projectUrl}>{item.fields.projectTitle}</a>
               </Box>

@@ -46,6 +46,7 @@ export default function Page() {
                 h={"30px"}
                 lineHeight={"30px"}
                 marginBottom={"10px"}
+                key={index}
               >
                 <a href={`/blog/${item.id}`}>{item.title}</a>
               </Box>
